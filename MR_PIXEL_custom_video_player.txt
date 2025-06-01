@@ -1,0 +1,2211 @@
+// Automatic FlutterFlow imports
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/widgets/index.dart'; // Imports other custom widgets
+import '/flutter_flow/custom_functions.dart'; // Imports custom functions
+import 'package:flutter/material.dart';
+// Begin custom widget code
+// DO NOT REMOVE OR MODIFY THE CODE ABOVE!
+
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:file_picker/file_picker.dart';
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:media_kit/media_kit.dart'; 
+import 'package:media_kit_video/media_kit_video.dart';
+import 'package:auto_orientation/auto_orientation.dart'; 
+import 'package:flutter/services.dart'; 
+
+class MrPixelvideoplayer extends StatefulWidget {
+  const MrPixelvideoplayer({
+    super.key,
+    this.width,
+    this.height,
+    this.hideDeviceUIinFullscreen,
+    this.hideAllUI,
+    this.detectVideoDimensions, 
+    this.videolink,
+    this.sdLink,
+    this.hdLink,
+    this.fhdLink,
+    this.fourkLink,
+    this.favouriteQuality, 
+    this.sdText,
+    this.hdText,
+    this.fhdText,
+    this.fourkText,
+    this.enableSaveTime, 
+    this.videoTitle, 
+    this.subtitleLinks, 
+    this.subtitleNames, 
+    this.favouriteSubtitle,
+    this.subtitleFontSize,
+    this.subtitleColor,
+    this.subtitleBorderWidth,
+    this.subtitleBorderColor,
+    this.enableSubtitleBorder,
+    this.subtitleBackgroundColor,
+    this.enableSubtitleBg,
+    this.subtitleBorderOffsetX,
+    this.subtitleBorderOffsety,
+    this.subtitleGoogleFontFamily,
+    this.enableUploadLocalSubtitle,
+
+    this.enableAspectRatio,
+    this.enableAutoFullscreen,
+    this.enableAutoPlay,
+    this.loop,
+    this.enableSpeedButton,
+    this.enableWakeLock,
+    this.enableSkipIntroButton,
+    this.startIntroTimeString, 
+    this.endIntroTimeString, 
+    this.skipIntroText,
+    this.skipIntroTextColor,
+    this.skipIntroTextSize,
+    this.skipButtonFontFamily,
+    this.skipButtonShadowColor,
+    this.skipButtonShadowBlurRadius,
+    this.imageAsLoading,
+    this.textAsLoading,
+    this.customLoadingCircularAnimation,
+    this.customLoadingPulseAnimation,
+    this.loadingWidth,
+    this.loadingHeight,
+    this.loadingColor,
+    this.loadingFontSize,
+    this.loadingShadowColor,
+    this.loadingShadowBlurRadius,
+    this.loadingGoogleFontFamily,
+    this.brightnessGesture,
+    this.buttonBarButtonColor,
+    this.buttonBarButtonSize,
+    this.buttonBarHeight,
+    this.controlsHoverDurationInSeconds,
+    this.controlsTransitionDurationInMilliSeconds,
+    this.displaySeekBar,
+    this.seekBarAlignmentX,
+    this.seekBarAlignmentY,
+    this.seekBarBufferColor,
+    this.seekBarColor,
+    this.seekBarContainerHeight,
+    this.seekBarHeight,
+    this.seekBarMarginLeft,
+    this.seekBarMarginTop,
+    this.seekBarMarginRight,
+    this.seekBarMarginBottom,
+    this.seekBarPositionColor,
+    this.seekBarThumbColor,
+    this.seekBarThumbSize,
+    this.seekGesture,
+    this.seekOnDoubleTap,
+    this.speedUpOnLongPress,
+    this.topButtonBarMarginLeft,
+    this.topButtonBarMarginTop,
+    this.topButtonBarMarginRight,
+    this.topButtonBarMarginBottom,
+    this.visibleOnMount,
+    this.volumeGesture,
+    this.iconsColor,
+    this.iconSize,
+    this.defaultIconsColor,
+    this.iconPlayPauseSize,
+    this.enterFullscreenICON,
+    this.exitFullscreenICON,
+    this.iconFullscreenSize,
+    this.hideFullscreenButton,
+    this.subtitlesICON,
+    this.qualityICON,
+    this.aspectRatioICON,
+    this.selectedOptionColor,
+    this.unselectedOptionColor,
+    this.optionFontSize,
+    this.optionFontFamily,
+    this.optionTextColor,
+    this.optionTextShadowColor,
+    this.optionTextShadowBlurRadius,
+    this.optionBorderRadius,
+    this.listBackgroundColor,
+    this.listBorderRadius,
+    this.listHeight, 
+    this.seekBarSpeedColor, 
+    this.maxSpeed,
+    this.speedICON,
+    this.colorUploadLocalSubtitleBoxOption,
+    this.enableVideoTime,
+    this.videoTimeFontFamily,
+    this.videoTimeTextSize,
+    this.videoTimeTextColor,
+    this.videoTimeShadowColor,
+    this.videoTimeShadowBlurRadius,
+    this.hidePlayAndPauseButton,
+  });
+  final double? width;
+  final double? height;
+  final bool? hideDeviceUIinFullscreen;
+  final bool? hideAllUI;
+  final bool? detectVideoDimensions;
+  final String? videolink;
+  final String? sdLink;
+  final String? hdLink;
+  final String? fhdLink;
+  final String? fourkLink;
+  final String? favouriteQuality;
+  final String? sdText;
+  final String? hdText;
+  final String? fhdText;
+  final String? fourkText;
+  final bool? enableSaveTime;
+  final String? videoTitle;
+  final String? subtitleLinks;
+  final String? subtitleNames;
+  final String? favouriteSubtitle;
+  final double? subtitleFontSize;
+  final Color? subtitleColor;
+  final double? subtitleBorderWidth;
+  final Color? subtitleBorderColor;
+  final bool? enableSubtitleBorder;
+  final Color? subtitleBackgroundColor;
+  final bool? enableSubtitleBg;
+  final double? subtitleBorderOffsetX;
+  final double? subtitleBorderOffsety;
+  final String? subtitleGoogleFontFamily;
+  final bool? enableUploadLocalSubtitle;
+  final bool? enableAspectRatio;
+  final bool? enableAutoFullscreen;
+  final bool? enableAutoPlay;
+  final bool? loop;
+  final bool? enableSpeedButton;
+  final bool? enableWakeLock;
+  final bool? enableSkipIntroButton;
+  final String? startIntroTimeString; 
+  final String? endIntroTimeString; 
+  final String? skipIntroText;
+  final Color? skipIntroTextColor;
+  final double? skipIntroTextSize;
+  final String? skipButtonFontFamily;
+  final Color? skipButtonShadowColor;
+  final double? skipButtonShadowBlurRadius;
+  final String? imageAsLoading;
+  final String? textAsLoading;
+  final bool? customLoadingCircularAnimation;
+  final bool? customLoadingPulseAnimation;
+  final double? loadingWidth;
+  final double? loadingHeight;
+  final Color? loadingColor;
+  final double? loadingFontSize;
+  final Color? loadingShadowColor;
+  final double? loadingShadowBlurRadius;
+  final String? loadingGoogleFontFamily;
+  final bool? brightnessGesture;
+  final Color? buttonBarButtonColor;
+  final double? buttonBarButtonSize;
+  final double? buttonBarHeight;
+  final int? controlsHoverDurationInSeconds;
+  final int? controlsTransitionDurationInMilliSeconds;
+  final bool? displaySeekBar;
+  final double? seekBarAlignmentX;
+  final double? seekBarAlignmentY;
+  final Color? seekBarBufferColor;
+  final Color? seekBarColor;
+  final double? seekBarContainerHeight;
+  final double? seekBarHeight;
+  final double? seekBarMarginLeft;
+  final double? seekBarMarginTop;
+  final double? seekBarMarginRight;
+  final double? seekBarMarginBottom;
+  final Color? seekBarPositionColor;
+  final Color? seekBarThumbColor;
+  final double? seekBarThumbSize;
+  final bool? seekGesture;
+  final bool? seekOnDoubleTap;
+  final bool? speedUpOnLongPress;
+  final double? topButtonBarMarginLeft;
+  final double? topButtonBarMarginTop;
+  final double? topButtonBarMarginRight;
+  final double? topButtonBarMarginBottom;
+  final bool? visibleOnMount;
+  final bool? volumeGesture;
+  final Color? iconsColor;
+  final double? iconSize;
+  final Color? defaultIconsColor;
+  final double? iconPlayPauseSize;
+  final double? iconFullscreenSize;
+  final Widget? enterFullscreenICON;
+  final Widget? exitFullscreenICON;
+  final bool? hideFullscreenButton;
+  final Widget? subtitlesICON;
+  final Widget? qualityICON;
+  final Widget? aspectRatioICON;
+  final Color? selectedOptionColor;
+  final Color? unselectedOptionColor;
+  final double? optionFontSize;
+  final String? optionFontFamily;
+  final Color? optionTextColor;
+  final Color? optionTextShadowColor;
+  final double? optionTextShadowBlurRadius;
+  final double? optionBorderRadius;
+  final Color? listBackgroundColor;
+  final double? listBorderRadius;
+  final double? listHeight;
+  final Color? seekBarSpeedColor; 
+  final double? maxSpeed; 
+  final Widget? speedICON;
+  final Color? colorUploadLocalSubtitleBoxOption;
+  final bool? enableVideoTime;
+  final String? videoTimeFontFamily;
+  final double? videoTimeTextSize;
+  final Color? videoTimeTextColor;
+  final Color? videoTimeShadowColor;
+  final double? videoTimeShadowBlurRadius;
+  final bool? hidePlayAndPauseButton;
+
+  @override
+  State<MrPixelvideoplayer> createState() =>
+      _MrPixelvideoplayerState();
+}
+
+class _MrPixelvideoplayerState
+    extends State<MrPixelvideoplayer>
+    with WidgetsBindingObserver, TickerProviderStateMixin {
+  late final Player player;
+  late final VideoController controller;
+  double rotationAngle = 0;
+  bool isFontValid = true;
+  double opacity = 1.0;
+  bool showQualitySettings = false;
+  String? errorMessage;
+  String? _currentSubtitleLink;
+  String? _currentSubtitleName;
+  bool subtitleLoaded = false;
+  String? loadedSubtitleContent; 
+  int subtitleShift = 0; 
+  String timeUnit = "ms"; 
+  late TextEditingController subtitleShiftController;
+  int subtitleOffset = 0; 
+  late final GlobalKey<VideoState> key = GlobalKey<VideoState>();
+  bool isIntroSkipped = false;
+  bool isIntroButtonVisible = false;
+  Duration? startIntroTime;
+  Duration? endIntroTime;
+  bool isInFullscreen = false;
+  Timer? savePositionTimer;
+  Duration? lastValidPosition; 
+  bool isSwitchingQuality = false; 
+  String? _selectedQualityLink; 
+  String? _selectedSubtitleName; 
+  int? _videoWidth;
+  int? _videoHeight;
+
+  late List<String> subtitleLinksAsList;
+  late List<String> subtitleNamesAsList;
+  double _currentPlaybackSpeed = 1.0;
+
+  TextStyle getOptionTextStyle() {
+    try {
+      return GoogleFonts.getFont(
+        isGoogleFontValid(widget.optionFontFamily)
+            ? widget.optionFontFamily!
+            : 'Roboto',
+        fontSize: widget.optionFontSize,
+        color: widget.optionTextColor,
+        shadows: [
+          Shadow(
+              offset: Offset(1, 1),
+              color: widget.optionTextShadowColor ?? Colors.black,
+              blurRadius: widget.optionTextShadowBlurRadius ?? 4),
+        ],
+      );
+    } catch (e) {
+      debugPrint("Error loading font '${widget.optionFontFamily}': $e");
+      return TextStyle(
+        fontFamily: 'Roboto',
+        fontSize: widget.optionFontSize,
+        color: widget.optionTextColor,
+        shadows: [
+          Shadow(
+              offset: Offset(1, 1),
+              color: widget.optionTextShadowColor ?? Colors.black,
+              blurRadius: widget.optionTextShadowBlurRadius ?? 4),
+        ],
+      );
+    }
+  }
+
+  TextStyle skipButtonStyle() {
+    try {
+      return GoogleFonts.getFont(
+        isGoogleFontValid(widget.skipButtonFontFamily)
+            ? widget.skipButtonFontFamily!
+            : 'Roboto',
+        fontSize: widget.skipIntroTextSize,
+        color: widget.skipIntroTextColor,
+        shadows: [
+          Shadow(
+              offset: Offset(1, 1),
+              color: widget.skipButtonShadowColor ?? Colors.black,
+              blurRadius: widget.skipButtonShadowBlurRadius ?? 4),
+        ],
+      );
+    } catch (e) {
+      debugPrint("Error loading font '${widget.skipButtonFontFamily}': $e");
+      return TextStyle(
+        fontFamily: 'Roboto',
+        fontSize: widget.skipIntroTextSize,
+        color: widget.skipIntroTextColor,
+        shadows: [
+          Shadow(
+              offset: Offset(1, 1),
+              color: widget.skipButtonShadowColor ?? Colors.black,
+              blurRadius: widget.skipButtonShadowBlurRadius ?? 4),
+        ],
+      );
+    }
+  }
+
+  TextStyle videoTimeStyle() {
+    try {
+      return GoogleFonts.getFont(
+        isGoogleFontValid(widget.videoTimeFontFamily)
+            ? widget.videoTimeFontFamily!
+            : 'Roboto',
+        fontSize: widget.videoTimeTextSize,
+        color: widget.videoTimeTextColor ?? Colors.white,
+        shadows: [
+          Shadow(
+              offset: Offset(1, 1),
+              color: widget.videoTimeShadowColor ?? Colors.black,
+              blurRadius: widget.videoTimeShadowBlurRadius ?? 4),
+        ],
+      );
+    } catch (e) {
+      debugPrint("Error loading font '${widget.videoTimeFontFamily}': $e");
+      return TextStyle(
+        fontFamily: 'Roboto',
+        fontSize: widget.videoTimeTextSize,
+        color: widget.videoTimeTextColor,
+        shadows: [
+          Shadow(
+              offset: Offset(1, 1),
+              color: widget.videoTimeShadowColor ?? Colors.black,
+              blurRadius: widget.videoTimeShadowBlurRadius ?? 4),
+        ],
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addObserver(this);
+
+
+   
+    startIntroTime =
+        parseTimeString(widget.startIntroTimeString) ?? Duration.zero;
+    endIntroTime = parseTimeString(widget.endIntroTimeString) ?? Duration.zero;
+
+    subtitleLinksAsList = widget.subtitleLinks?.split(',') ?? [];
+    subtitleNamesAsList = widget.subtitleNames?.split(',') ?? [];
+
+    if (subtitleLinksAsList.length != subtitleNamesAsList.length) {
+      debugPrint(
+          "Warning: The number of subtitle links and names do not match.");
+    }
+ 
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (widget.favouriteSubtitle != null) {
+        final subtitleDetails = _getPreferredSubtitle(
+          widget.favouriteSubtitle,
+          widget.subtitleNames,
+          widget.subtitleLinks,
+        );
+
+        if (subtitleDetails != null) {
+          final subtitleLink = subtitleDetails['link'];
+          final subtitleName = subtitleDetails['name'];
+
+          if (subtitleLink != null && subtitleName != null) {
+            
+            _currentSubtitleLink = subtitleLink;
+            _currentSubtitleName = subtitleName;
+            _selectedSubtitleName = subtitleName;
+
+            debugPrint("Auto-loading subtitle: $subtitleName ($subtitleLink)");
+
+            
+            await Future.delayed(Duration(seconds: 1));
+
+            await player.setSubtitleTrack(
+              SubtitleTrack.uri(
+                subtitleLink,
+                title: subtitleName,
+                language: 'unknown',
+              ),
+            );
+
+            setState(() {
+              subtitleLoaded = true;
+            });
+          }
+        }
+      }
+    });
+
+    subtitleShiftController =
+        TextEditingController(text: subtitleShift.toString());
+    
+    MediaKit.ensureInitialized();
+
+    
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      key.currentState?.enterFullscreen();
+    });
+
+    
+    player = Player();
+    controller = VideoController(player);
+    
+    if (widget.loop == true) {
+      player.setPlaylistMode(PlaylistMode.single); 
+    } else {
+      player.setPlaylistMode(PlaylistMode.none); 
+    }
+    
+    player.stream.width.listen((int? width) {
+      setState(() {
+        _videoWidth = width;
+      });
+    });
+
+    player.stream.height.listen((int? height) {
+      setState(() {
+        _videoHeight = height;
+      });
+    });
+
+    player.stream.height.listen((int? height) {
+      if (height != null && widget.detectVideoDimensions == true) {
+        setState(() {
+          _aspectRatios[_currentAspectIndex] =
+              (player.state.width?.toDouble() ?? 1.0) / height;
+        });
+        debugPrint("Detected video height: $height");
+      }
+    });
+    if (widget.imageAsLoading != null && widget.textAsLoading != null) {
+      errorMessage =
+          "Hello developer, you have passed values ​​to imageAsLoading and textAsLoading at the same time. Please pass the value to only one. Best regards, Mr.Pixel";
+    }
+
+    
+    AutoOrientation.portraitAutoMode(); 
+    
+    final hasQualityLinks = widget.sdLink != null ||
+        widget.hdLink != null ||
+        widget.fhdLink != null ||
+        widget.fourkLink != null;
+
+    if (widget.videolink != null &&
+        widget.videolink!.isNotEmpty &&
+        hasQualityLinks) {
+      
+      errorMessage =
+          "You have passed values to videolink, sdLink, hdLink, fhdLink, fourkLink. Please pass to either videolink or Quality Parameters.Best regards, Mr. Pixel";
+      return;
+    } else if (widget.videolink != null && widget.videolink!.isNotEmpty) {
+      
+      player.open(Media(widget.videolink!),
+          play: widget.enableAutoPlay ?? false);
+      showQualitySettings = hasQualityLinks;
+    } else if (hasQualityLinks) {
+      
+      try {
+        _selectedQualityLink =
+            _getPreferredQualityLink(widget.favouriteQuality);
+
+        
+        if (_selectedQualityLink == null || _selectedQualityLink!.isEmpty) {
+          throw Exception(
+              "Thank you for using MR.PIXEL Player v1.0 , To contact Telegram: MR_PIXEL_FF  X: mr_pixel_ff");
+        }
+
+        
+        player.open(Media(_selectedQualityLink!),
+            play: widget.enableAutoPlay ?? false);
+        showQualitySettings = true;
+      } catch (e) {
+        errorMessage = e.toString();
+        debugPrint(errorMessage);
+        return; 
+      }
+    } else {
+      
+      errorMessage = "No video URL provided.";
+      return;
+    }
+    
+    if (widget.enableSaveTime == true) {
+      debugPrint("SharedPreferences is enabled. Restoring last position...");
+      _restoreLastPosition();
+    }
+
+    
+    if (widget.enableSaveTime == true) {
+      savePositionTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
+        debugPrint("Auto-saving position...");
+        _saveLastPosition();
+      });
+    }
+
+    
+    WidgetsBinding.instance.addObserver(this);
+
+    
+    _listenForNetworkChanges();
+
+    player.stream.position.listen((position) {
+      if (startIntroTime != null &&
+          endIntroTime != null &&
+          position >= startIntroTime! &&
+          position < endIntroTime!) {
+        setState(() {
+          isIntroButtonVisible = true;
+        });
+      } else if (position >= endIntroTime!) {
+        setState(() {
+          isIntroButtonVisible = false;
+        });
+      }
+    });
+    
+    if (widget.loadingGoogleFontFamily != null) {
+      try {
+        GoogleFonts.getFont(widget.loadingGoogleFontFamily!);
+      } catch (e) {
+        isFontValid = false;
+      }
+    }
+
+    if (widget.customLoadingCircularAnimation == true) {
+      Future.delayed(const Duration(milliseconds: 100), _rotate);
+    }
+
+    if (widget.customLoadingPulseAnimation == true) {
+      _startPulseAnimation();
+    }
+  }
+
+  Widget? iconDataToWidget(IconData? iconData, {Color? color, double? size}) {
+    if (iconData == null) return null;
+    return Icon(iconData, color: color, size: size);
+  }
+
+  Map? _getPreferredSubtitle(
+    String? favouriteSubtitle,
+    String? subtitleNames,
+    String? subtitleLinks,
+  ) {
+    if (favouriteSubtitle == null ||
+        subtitleNames == null ||
+        subtitleLinks == null) {
+      return null;
+    }
+
+    
+    final subtitleNamesList = subtitleNames.split(',');
+    final subtitleLinksList = subtitleLinks.split(',');
+
+    
+    if (subtitleNamesList.length != subtitleLinksList.length) {
+      debugPrint(
+          "Warning: The number of subtitle names and links do not match.");
+      return null;
+    }
+
+    
+    for (int i = 0; i < subtitleNamesList.length; i++) {
+      if (favouriteSubtitle == subtitleNamesList[i] &&
+          subtitleLinksList[i].isNotEmpty) {
+        return {'link': subtitleLinksList[i], 'name': subtitleNamesList[i]};
+      }
+    }
+
+    return null;
+  }
+
+  Future<void> _startVideoWithRetry(String url) async {
+    int retryAttempts = 0;
+    const int maxRetries = 1000000000000000000;
+    const Duration retryTimeout = Duration(seconds: 5);
+
+    bool isVideoLoadedSuccessfully = false;
+
+    while (retryAttempts < maxRetries && !isVideoLoadedSuccessfully) {
+      try {
+        debugPrint("Attempting to load video: $url");
+        await player.open(Media(url), play: widget.enableAutoPlay ?? false);
+
+        
+        isVideoLoadedSuccessfully = await _waitForMediaToLoad(retryTimeout);
+
+        if (!isVideoLoadedSuccessfully) {
+          retryAttempts++;
+          debugPrint("Video load failed. Retrying... Attempt $retryAttempts");
+        }
+      } catch (e) {
+        retryAttempts++;
+        debugPrint(
+            "Error loading video: $e. Retrying... Attempt $retryAttempts");
+      }
+    }
+
+    if (!isVideoLoadedSuccessfully) {
+      debugPrint("Failed to load video after $maxRetries attempts.");
+      errorMessage =
+          "Failed to load video. Please check your internet connection.";
+    } else {
+      debugPrint("Video loaded successfully: $url");
+    }
+  }
+
+  void _autoLoadSubtitle() async {
+    if (widget.favouriteSubtitle == null) return;
+
+    final subtitleDetails = _getPreferredSubtitle(
+      widget.favouriteSubtitle,
+      widget.subtitleNames,
+      widget.subtitleLinks,
+    );
+
+    if (subtitleDetails != null) {
+      await player.setSubtitleTrack(
+        SubtitleTrack.uri(
+          subtitleDetails['link'],
+          title: subtitleDetails['name'],
+        ),
+      );
+      setState(() {
+        _currentSubtitleName = subtitleDetails['name'];
+        _selectedSubtitleName = subtitleDetails['name'];
+      });
+    }
+  }
+
+  void _listenForNetworkChanges() {
+    Connectivity()
+        .onConnectivityChanged
+        .listen((List<ConnectivityResult> results) async {
+      if (results.any((result) => result != ConnectivityResult.none)) {
+        debugPrint("Network connection restored.");
+
+        
+        if (!player.state.playing) {
+          debugPrint(
+              "Player is in an error state or stopped. Retrying video load...");
+
+          try {
+            if (_selectedQualityLink != null) {
+              await _startVideoWithRetry(_selectedQualityLink!);
+            } else if (widget.videolink != null) {
+              await _startVideoWithRetry(widget.videolink!);
+            }
+
+            
+            await _restoreLastPosition();
+
+            
+            await player.play();
+          } catch (e) {
+            debugPrint("Error retrying video load: $e");
+          }
+        } else {
+          debugPrint("Player is still active. No reload needed.");
+        }
+      } else {
+        debugPrint("Network connection lost.");
+      }
+    });
+  }
+
+  void _rotate() {
+    if (mounted) {
+      setState(() {
+        rotationAngle += 0.2;
+      });
+      Future.delayed(const Duration(milliseconds: 50), _rotate);
+    }
+  }
+
+  void _startPulseAnimation() {
+    Future.delayed(const Duration(milliseconds: 500), () {
+      if (mounted) {
+        setState(() {
+          opacity = opacity == 1.0 ? 0.5 : 1.0;
+        });
+        _startPulseAnimation();
+      }
+    });
+  }
+
+  Future _loadSubtitle(String link, String name) async {
+    debugPrint("Loading subtitle asynchronously: $name ($link)");
+
+    
+    _currentSubtitleLink = link;
+    _currentSubtitleName = name;
+
+    try {
+      
+      final response = await HttpClient().getUrl(Uri.parse(link));
+      final httpResponse = await response.close();
+      if (httpResponse.statusCode == 200) {
+        final subtitleContent =
+            await httpResponse.transform(utf8.decoder).join();
+
+        
+        await player.setSubtitleTrack(
+          SubtitleTrack.data(
+            subtitleContent,
+            title: name,
+            language: 'unknown',
+          ),
+        );
+
+        
+        setState(() {
+          _selectedSubtitleName = name;
+        });
+
+        debugPrint("Subtitle loaded successfully: $name ($link)");
+      } else {
+        debugPrint("Failed to load subtitle: HTTP ${httpResponse.statusCode}");
+      }
+    } catch (e) {
+      debugPrint("Error loading subtitle: $e");
+    }
+  }
+
+  Duration? parseTimeString(String? timeString) {
+    if (timeString == null) return null;
+    try {
+      final parts = timeString.split(':');
+      final minutes = int.parse(parts[0]);
+      final seconds = int.parse(parts[1]);
+      return Duration(minutes: minutes, seconds: seconds);
+    } catch (e) {
+      print('Error parsing time string: $timeString');
+      return null;
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    savePositionTimer?.cancel();
+    debugPrint("Disposing video player. Saving position before exit...");
+    _saveLastPosition(); 
+    player.dispose();
+
+    super.dispose();
+
+    player.dispose();
+    
+    super.dispose();
+    subtitleShiftController.dispose();
+    player.dispose();
+    super.dispose();
+  }
+
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed && isInFullscreen) {
+      enterFullscreen();
+    }
+    debugPrint("App lifecycle changed: $state");
+
+    if (state == AppLifecycleState.resumed) {
+      if (isSwitchingQuality &&
+          lastValidPosition != null &&
+          lastValidPosition!.inSeconds > 0) {
+        debugPrint(
+            "App resumed after quality change. Forcing position restore: ${lastValidPosition!.inSeconds} seconds");
+        player.seek(lastValidPosition!);
+        player.play();
+        isSwitchingQuality = false; 
+      }
+    } else if (state == AppLifecycleState.paused ||
+        state == AppLifecycleState.detached) {
+      debugPrint("App is pausing or closing. Saving position...");
+      _saveLastPosition();
+    }
+  }
+
+
+  Future<void> _saveLastPosition() async {
+    if (widget.enableSaveTime == false || widget.videoTitle == null) {
+      debugPrint(
+          "Skipping save: SharedPreferences disabled or videoTitle is null.");
+      return;
+    }
+
+    final prefs = await SharedPreferences.getInstance();
+    final lastPosition = player.state.position.inSeconds;
+    debugPrint(
+        "Saving position for '${widget.videoTitle}': $lastPosition seconds");
+    await prefs.setInt(widget.videoTitle!, lastPosition);
+  }
+
+
+  Future _restoreLastPosition() async {
+    if (widget.enableSaveTime == false || widget.videoTitle == null) {
+      debugPrint(
+          "Skipping restore: SharedPreferences disabled or videoTitle is null.");
+      return;
+    }
+
+    final prefs = await SharedPreferences.getInstance();
+    final lastPosition = prefs.getInt(widget.videoTitle!);
+
+    if (lastPosition != null && lastPosition > 0) {
+      debugPrint(
+          "Restoring position for '${widget.videoTitle}': $lastPosition seconds");
+
+      
+      StreamSubscription? subscription;
+      subscription = player.stream.duration.listen((Duration? duration) async {
+        if (duration != null && duration > Duration.zero) {
+          debugPrint(
+              "Video loaded. Seeking to restored position: $lastPosition seconds");
+          await player.seek(Duration(seconds: lastPosition));
+          subscription?.cancel(); 
+        }
+      });
+    } else {
+      debugPrint("No saved position found for '${widget.videoTitle}'.");
+    }
+  }
+
+
+  String? _getPreferredQualityLink(String? favouriteQuality) {
+    String? preferredLink;
+
+    switch (favouriteQuality?.toUpperCase()) {
+      case 'SD':
+        preferredLink = _getValidLink(widget.sdLink) ??
+            _getValidLink(widget.hdLink) ??
+            _getValidLink(widget.fhdLink) ??
+            _getValidLink(widget.fourkLink);
+        debugPrint(
+            "SD Link: ${widget.sdLink}, Fallback to HD: ${widget.hdLink}, FHD: ${widget.fhdLink}, 4K: ${widget.fourkLink}");
+        break;
+      case 'HD':
+        preferredLink = _getValidLink(widget.hdLink) ??
+            _getValidLink(widget.fhdLink) ??
+            _getValidLink(widget.fourkLink) ??
+            _getValidLink(widget.sdLink);
+        debugPrint(
+            "HD Link: ${widget.hdLink}, Fallback to FHD: ${widget.fhdLink}, 4K: ${widget.fourkLink}, SD: ${widget.sdLink}");
+        break;
+      case 'FHD':
+        preferredLink = _getValidLink(widget.fhdLink) ??
+            _getValidLink(widget.fourkLink) ??
+            _getValidLink(widget.hdLink) ??
+            _getValidLink(widget.sdLink);
+        debugPrint(
+            "FHD Link: ${widget.fhdLink}, Fallback to 4K: ${widget.fourkLink}, HD: ${widget.hdLink}, SD: ${widget.sdLink}");
+        break;
+      case '4K':
+        preferredLink = _getValidLink(widget.fourkLink) ??
+            _getValidLink(widget.fhdLink) ??
+            _getValidLink(widget.hdLink) ??
+            _getValidLink(widget.sdLink);
+        debugPrint(
+            "4K Link: ${widget.fourkLink}, Fallback to FHD: ${widget.fhdLink}, HD: ${widget.hdLink}, SD: ${widget.sdLink}");
+        break;
+      default:
+        
+        preferredLink = _getValidLink(widget.hdLink) ??
+            _getValidLink(widget.sdLink) ??
+            _getValidLink(widget.fhdLink) ??
+            _getValidLink(widget.fourkLink);
+        debugPrint(
+            "Defaulting to HD: ${widget.hdLink}, Fallback to SD: ${widget.sdLink}, FHD: ${widget.fhdLink}, 4K: ${widget.fourkLink}");
+        break;
+    }
+
+
+    if (preferredLink == null) {
+      throw Exception(
+          "Thank you for using MR.PIXEL Player v1.0 , To contact Telegram: MR_PIXEL_FF  X: mr_pixel_ff");
+    }
+    return preferredLink;
+  }
+
+
+  String? _getValidLink(String? link) {
+    if (link != null && link.isNotEmpty) {
+      return link;
+    }
+    return null;
+  }
+  
+
+  void updateSubtitleOffset(int offsetChange) {
+    setState(() {
+      subtitleOffset = (subtitleOffset + offsetChange)
+          .clamp(0, 120); 
+    });
+  }
+
+  void showErrorMessage(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: const Duration(
+            seconds: 4), 
+      ),
+    );
+  }
+
+  Future loadLocalSubtitle() async {
+    
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['srt'],
+    );
+
+    
+    if (result == null || result.files.isEmpty) {
+      debugPrint("User canceled or did not select a subtitle file.");
+      return; 
+    }
+
+    
+    String filePath = result.files.single.path ?? '';
+    try {
+      
+      final file = File(filePath);
+      final subtitleContent = await file.readAsString();
+
+      
+      applySubtitleShift(subtitleContent);
+
+      
+      await player.setSubtitleTrack(
+        SubtitleTrack.data(
+          subtitleContent,
+          title: "Local Subtitle",
+          language: "unknown",
+        ),
+      );
+
+      
+      setState(() {
+        _selectedSubtitleName =
+            "Local Subtitle"; 
+        subtitleLoaded = true;
+      });
+    } catch (e) {
+      
+      setState(() {
+        errorMessage = "Failed to load subtitle file content. Error: $e";
+      });
+      showErrorMessage(errorMessage!);
+    }
+  }
+
+  Future applySubtitleShift([String? subtitleContent]) async {
+    
+    final contentToShift = subtitleContent ?? loadedSubtitleContent;
+
+    if (contentToShift != null) {
+      final shiftInMs = timeUnit == "s" ? subtitleShift * 1000 : subtitleShift;
+      debugPrint('Applying subtitle shift asynchronously: $shiftInMs ms');
+
+      
+      final shiftedSubtitleContent = await Future(
+        () => shiftSubtitleTiming(contentToShift, shiftInMs),
+      );
+
+      
+      await player.setSubtitleTrack(
+        SubtitleTrack.data(
+          shiftedSubtitleContent,
+          title: "Shifted Subtitle",
+          language: "en",
+        ),
+      );
+    } else {
+      debugPrint("No subtitle content available to shift.");
+    }
+  }
+
+  String shiftSubtitleTiming(String subtitleContent, int shiftInMs) {
+    final lines = LineSplitter.split(subtitleContent).toList();
+    final buffer = StringBuffer();
+
+    
+    final timeRegEx = RegExp(
+        r'(\d{2}:\d{2}:\d{2}[,\.]\d{3}) --> (\d{2}:\d{2}:\d{2}[,\.]\d{3})');
+
+    for (var line in lines) {
+      final match = timeRegEx.firstMatch(line);
+
+      if (match != null) {
+        
+        final startTime = parseTime(match.group(1)!);
+        final endTime = parseTime(match.group(2)!);
+
+        
+        final shiftedStartTime =
+            (startTime + Duration(milliseconds: shiftInMs)).isNegative
+                ? Duration.zero
+                : startTime + Duration(milliseconds: shiftInMs);
+
+        final shiftedEndTime =
+            (endTime + Duration(milliseconds: shiftInMs)).isNegative
+                ? Duration.zero
+                : endTime + Duration(milliseconds: shiftInMs);
+
+       
+        final formattedStartTime =
+            formatTime(shiftedStartTime, match.group(1)!);
+        final formattedEndTime = formatTime(shiftedEndTime, match.group(2)!);
+
+        
+        buffer.writeln('$formattedStartTime --> $formattedEndTime');
+      } else {
+        
+        buffer.writeln(line);
+      }
+    }
+
+    return buffer.toString();
+  }
+
+  Duration parseTime(String time) {
+    final isVtt = time.contains('.');
+    final parts = time.split(RegExp(r'[:,\.]')); 
+    return Duration(
+      hours: int.parse(parts[0]),
+      minutes: int.parse(parts[1]),
+      seconds: int.parse(parts[2]),
+      milliseconds:
+          int.parse(parts[3]) * (isVtt ? 1 : 1), 
+    );
+  }
+
+  String formatTime(Duration duration, String originalTime) {
+    final isVtt = originalTime.contains('.');
+    final hours = duration.inHours.toString().padLeft(2, '0');
+    final minutes = (duration.inMinutes % 60).toString().padLeft(2, '0');
+    final seconds = (duration.inSeconds % 60).toString().padLeft(2, '0');
+    final milliseconds =
+        (duration.inMilliseconds % 1000).toString().padLeft(3, '0');
+    return isVtt
+        ? '$hours:$minutes:$seconds.$milliseconds' 
+        : '$hours:$minutes:$seconds,$milliseconds'; 
+  }
+
+
+  void enterFullscreen() {
+    if (widget.hideDeviceUIinFullscreen == true) {
+      
+      if (isInFullscreen) return;
+
+      
+      final videoWidth = player.state.width;
+      final videoHeight = player.state.height;
+
+      if (videoWidth != null && videoHeight != null) {
+        
+        final aspectRatio = videoWidth / videoHeight;
+
+        
+        if (aspectRatio < 1) {
+          
+          AutoOrientation.portraitAutoMode();
+        } else {
+          
+          AutoOrientation.landscapeAutoMode(forceSensor: true);
+        }
+      } else {
+        
+        AutoOrientation.landscapeAutoMode(forceSensor: true);
+      }
+
+      
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+
+      
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        SystemChrome.setSystemUIChangeCallback(
+            (systemOverlaysAreVisible) async {
+          if (systemOverlaysAreVisible && isInFullscreen) {
+            
+            SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+          }
+        });
+      });
+
+      
+      isInFullscreen = true;
+    }
+  }
+
+  
+  final List<double> _aspectRatios = [
+    2.39 / 1, 
+    21.0 / 9, 
+    16.0 / 9 
+  ];
+  int _currentAspectIndex = 2; 
+
+  void _toggleAspectRatio() {
+    setState(() {
+      _currentAspectIndex = (_currentAspectIndex + 1) % _aspectRatios.length;
+    });
+  }
+
+  Future<void> setQuality(String url) async {
+    
+    savePositionTimer?.cancel();
+
+    
+    final Duration lastSavedPosition = player.state.position;
+    debugPrint(
+        "Saving last position before quality change: ${lastSavedPosition.inSeconds} seconds");
+
+    
+    await player.pause();
+
+    
+    StreamSubscription? subscription;
+    subscription = player.stream.duration.listen((Duration? duration) async {
+      if (duration != null && duration > Duration.zero) {
+        debugPrint(
+            "New quality loaded. Restoring position: ${lastSavedPosition.inSeconds} seconds");
+
+        
+        await player.seek(lastSavedPosition);
+        await player.play();
+
+        
+        _startAutoSavePosition();
+
+        
+        subscription?.cancel();
+      }
+    });
+    
+    if (_currentSubtitleLink != null && _currentSubtitleName != null) {
+      await player.setSubtitleTrack(
+        SubtitleTrack.uri(
+          _currentSubtitleLink!,
+          title: _currentSubtitleName!,
+          language: 'unknown',
+        ),
+      );
+    }
+
+    
+    await player.open(Media(url), play: false);
+  }
+
+
+  void _startAutoSavePosition() {
+    if (widget.enableSaveTime == true) {
+      savePositionTimer?.cancel();
+      savePositionTimer =
+          Timer.periodic(const Duration(seconds: 5), (timer) async {
+        final Duration currentPosition = player.state.position;
+
+        
+        if (currentPosition.inSeconds > 0 && player.state.playing) {
+          debugPrint(
+              "Auto-saving new valid position: ${currentPosition.inSeconds} seconds");
+          lastValidPosition = currentPosition;
+          await _saveLastPosition();
+        } else {
+          debugPrint(
+              "Skipping auto-save: Position not valid or video not playing.");
+        }
+      });
+    }
+  }
+
+  void buildQualityOptions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor:
+          Colors.transparent, 
+      barrierColor: Colors.transparent,
+      builder: (BuildContext context) {
+        return Container(
+          height:
+              MediaQuery.of(context).size.height * (widget.listHeight ?? 0.5),
+          decoration: BoxDecoration(
+            color: widget.listBackgroundColor,
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(widget.listBorderRadius ?? 20.0),
+            ),
+          ),
+          padding: const EdgeInsets.all(16), 
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Quality Settings',
+                  style: getOptionTextStyle(),
+                ),
+                const SizedBox(height: 16),
+                if (widget.sdLink != null && widget.sdLink!.isNotEmpty)
+                  _buildQualityItem(
+                    context,
+                    title: widget.sdText ?? '480p (SD)',
+                    link: widget.sdLink!,
+                  ),
+                if (widget.hdLink != null && widget.hdLink!.isNotEmpty)
+                  _buildQualityItem(
+                    context,
+                    title: widget.hdText ?? '720p (HD)',
+                    link: widget.hdLink!,
+                  ),
+                if (widget.fhdLink != null && widget.fhdLink!.isNotEmpty)
+                  _buildQualityItem(
+                    context,
+                    title: widget.fhdText ?? '1080p (FHD)',
+                    link: widget.fhdLink!,
+                  ),
+                if (widget.fourkLink != null && widget.fourkLink!.isNotEmpty)
+                  _buildQualityItem(
+                    context,
+                    title: widget.fourkText ?? '4K (Ultra HD)',
+                    link: widget.fourkLink!,
+                  ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildIconWithShadow(Widget? customIcon, IconData defaultIcon,
+      double iconSize, Color iconColor) {
+    
+    double shadowBlurRadius = iconSize * 1; 
+    double shadowSpreadRadius = iconSize * 0.00008; 
+
+    return Container(
+      width: iconSize,
+      height: iconSize,
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(1, 0, 0, 0), 
+        boxShadow: [
+          BoxShadow(
+            color: const Color.fromARGB(255, 0, 0, 0)
+                .withOpacity(0.5),
+            blurRadius: shadowBlurRadius, 
+            spreadRadius: shadowSpreadRadius, 
+            offset:
+                Offset(iconSize * 0.0002, iconSize * 0.0002), 
+          ),
+        ],
+      ),
+      child: customIcon ??
+          Icon(
+            defaultIcon,
+            size: iconSize,
+            color: iconColor,
+          ),
+    );
+  }
+
+
+  Widget _buildQualityItem(BuildContext context,
+      {required String title, required String link}) {
+    final isSelected =
+        _selectedQualityLink == link;
+
+    return GestureDetector(
+      onTap: () async {
+        if (!isSelected) {
+          await _handleQualityChange(link); 
+          setState(() {
+            _selectedQualityLink = link; 
+          });
+        }
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 8),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? widget.selectedOptionColor 
+              : widget.unselectedOptionColor, 
+          borderRadius: BorderRadius.circular(
+              widget.optionBorderRadius ?? 10.0), 
+        ),
+        child: Row(
+          children: [
+            Text(
+              title,
+              style:
+                  getOptionTextStyle(), 
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future _handleQualityChange(String url) async {
+    
+    isSwitchingQuality = true;
+
+    
+    savePositionTimer?.cancel();
+
+    
+    final Duration currentPosition = player.state.position;
+    if (currentPosition.inSeconds > 0) {
+      lastValidPosition = currentPosition;
+    }
+    debugPrint(
+        "Saving last position before quality change: ${lastValidPosition?.inSeconds ?? 'N/A'} seconds");
+
+    
+    await player.pause();
+
+    
+    final String previousQualityLink = _selectedQualityLink ?? widget.hdLink!;
+
+    
+    int retryAttempts = 0;
+    const int maxRetries = 1000000000000000000; 
+    const Duration retryTimeout = Duration(seconds: 5);
+
+    bool isQualityLoadedSuccessfully = false;
+
+    while (retryAttempts < maxRetries && !isQualityLoadedSuccessfully) {
+      try {
+        
+        await player.open(Media(url), play: false);
+
+        
+        isQualityLoadedSuccessfully = await _waitForMediaToLoad(retryTimeout);
+
+        if (!isQualityLoadedSuccessfully) {
+          retryAttempts++;
+          debugPrint("Quality load failed. Retrying... Attempt $retryAttempts");
+        }
+      } catch (e) {
+        retryAttempts++;
+        debugPrint(
+            "Error loading quality: $e. Retrying... Attempt $retryAttempts");
+      }
+    }
+
+    if (!isQualityLoadedSuccessfully) {
+      
+      debugPrint(
+          "Failed to load new quality after $maxRetries attempts. Reverting to previous quality.");
+      await player.open(Media(previousQualityLink), play: false);
+      _selectedQualityLink =
+          previousQualityLink; 
+
+      
+      if (lastValidPosition != null && lastValidPosition!.inSeconds > 0) {
+        debugPrint(
+            "Restoring last valid position after revert: ${lastValidPosition!.inSeconds} seconds");
+        await player.seek(lastValidPosition!);
+        await player.play();
+      }
+    } else {
+      
+      _selectedQualityLink = url; 
+      debugPrint("New quality loaded successfully: $url");
+
+      
+      if (lastValidPosition != null && lastValidPosition!.inSeconds > 0) {
+        debugPrint(
+            "Restoring last valid position: ${lastValidPosition!.inSeconds} seconds");
+        await player.seek(lastValidPosition!);
+        await player.play();
+      } else {
+        debugPrint("Skipping restore: No valid position found.");
+      }
+    }
+
+    
+    if (_currentSubtitleLink != null && _currentSubtitleName != null) {
+      debugPrint(
+          "Reapplying subtitle: $_currentSubtitleName ($_currentSubtitleLink)");
+      await player.setSubtitleTrack(
+        SubtitleTrack.uri(
+          _currentSubtitleLink!,
+          title: _currentSubtitleName!,
+          language: 'unknown',
+        ),
+      );
+    }
+
+    
+    _startAutoSavePosition();
+
+    
+    isSwitchingQuality = false;
+  }
+
+
+  Future<bool> _waitForMediaToLoad(Duration timeout) async {
+    final Completer<bool> completer = Completer<bool>();
+    StreamSubscription? subscription;
+
+    
+    subscription = player.stream.duration.listen((Duration? duration) {
+      if (duration != null && duration > Duration.zero) {
+        completer.complete(true); 
+        subscription?.cancel();
+      }
+    });
+
+    
+    Future.delayed(timeout, () {
+      if (!completer.isCompleted) {
+        completer.complete(false); 
+        subscription?.cancel();
+      }
+    });
+
+    return completer.future;
+  }
+
+  bool isGoogleFontValid(String? fontFamily) {
+    if (fontFamily == null || fontFamily.isEmpty) {
+      return false;
+    }
+    try {
+      
+      GoogleFonts.getFont(fontFamily);
+      return true;
+    } catch (e) {
+      
+      debugPrint("There is no font family with the name '$fontFamily'.");
+      return false;
+    }
+  }
+
+  Widget _buildSubtitlesSection(BuildContext context, StateSetter setState) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (subtitleLinksAsList.isNotEmpty ||
+            widget.enableUploadLocalSubtitle == true) ...[
+          const SizedBox(height: 16),
+        ],
+        for (int i = 0;
+            i < subtitleLinksAsList.length && i < subtitleNamesAsList.length;
+            i++)
+          _buildSubtitleItem(
+            context,
+            title: subtitleNamesAsList[i],
+            onTap: () async {
+              await _loadSubtitle(
+                  subtitleLinksAsList[i], subtitleNamesAsList[i]);
+              Navigator.pop(context);
+            },
+          ),
+        if (widget.enableUploadLocalSubtitle == true) ...[
+          const SizedBox(height: 16),
+          _buildSubtitleItem(
+            context,
+            title: subtitleLoaded ? 'Subtitle Loaded' : 'Upload Subtitle',
+            onTap: loadLocalSubtitle,
+          ),
+        ],
+        
+      ],
+    );
+  }
+
+
+  Widget _buildSubtitleItem(BuildContext context,
+      {required String title, required VoidCallback onTap}) {
+    final isSelected = _selectedSubtitleName == title;
+
+
+    Color getBoxColor() {
+      if (title == 'Upload Subtitle' || title == 'Subtitle Loaded') {
+        return widget.colorUploadLocalSubtitleBoxOption ?? Colors.white;
+      }
+      return isSelected
+          ? widget.selectedOptionColor ?? Colors.blue
+          : widget.unselectedOptionColor ?? Colors.grey;
+    }
+
+    return GestureDetector(
+      onTap: () async {
+        if (isSelected) {
+          await player.setSubtitleTrack(SubtitleTrack.no());
+          setState(() {
+            _selectedSubtitleName = null;
+            Navigator.pop(context);
+          });
+        } else {
+          onTap();
+        }
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 8),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: getBoxColor(), 
+          borderRadius:
+              BorderRadius.circular(widget.optionBorderRadius ?? 10.0),
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                title,
+                style: getOptionTextStyle(), 
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+
+
+  void _showPlaybackSpeedModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor:
+          Colors.transparent, 
+      barrierColor: Colors.transparent,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return Container(
+              height: MediaQuery.of(context).size.height *
+                  (widget.listHeight ?? 0.5),
+              decoration: BoxDecoration(
+                color: widget.listBackgroundColor,
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(widget.listBorderRadius ?? 20.0),
+                ),
+              ),
+              padding: const EdgeInsets.all(16), 
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    
+                    Center(
+                      child: Text(
+                        'PLAYBACK SPEED',
+                        style: getOptionTextStyle(), 
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Slider(
+                      value: _currentPlaybackSpeed, 
+                      min: 0.5, 
+                      max: widget.maxSpeed ??
+                          2.0, 
+                      divisions: ((widget.maxSpeed ?? 2.0) * 10)
+                          .toInt(), 
+                      label:
+                          '${_currentPlaybackSpeed.toStringAsFixed(1)}x', 
+                      onChanged: (double value) {
+                        setState(() {
+                          _currentPlaybackSpeed =
+                              value; 
+                        });
+                      },
+                      onChangeEnd: (double value) {
+                        player.setRate(value); 
+                      },
+                      activeColor: widget
+                          .seekBarSpeedColor, 
+                    ),
+                    const SizedBox(height: 8),
+                    Center(
+                      child: Text(
+                        '${_currentPlaybackSpeed.toStringAsFixed(1)}x',
+                        style: getOptionTextStyle(), 
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  void _showSubtitlesModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor:
+          Colors.transparent, 
+      barrierColor: Colors.transparent,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return Container(
+              height: MediaQuery.of(context).size.height *
+                  (widget.listHeight ?? 0.5),
+              decoration: BoxDecoration(
+                color: widget.listBackgroundColor,
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(widget.listBorderRadius ?? 20.0),
+                ),
+              ),
+              padding: const EdgeInsets.all(16), 
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Subtitles',
+                      style:
+                          getOptionTextStyle(), 
+                    ),
+                    const SizedBox(height: 16),
+                    _buildSubtitlesSection(context, setState),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (errorMessage != null) {
+      return Center(
+        child: Text(
+          errorMessage!,
+          style: const TextStyle(color: Colors.red, fontSize: 16),
+          textAlign: TextAlign.center,
+        ),
+      );
+    }
+    Widget bufferingIndicator() {
+      Widget loadingWidget;
+
+      if (!isFontValid) {
+        return const Center(
+          child: Text(
+            "Hello developer. Unfortunately the font you want is not recognized. Make sure the font is available on fonts.google.com. Best regards, Mr. Pixel",
+            style: TextStyle(color: Colors.red, fontSize: 16),
+            textAlign: TextAlign.center,
+          ),
+        );
+      }
+
+      if (widget.imageAsLoading != null) {
+        loadingWidget = Container(
+          width: widget.loadingWidth ?? 100,
+          height: widget.loadingHeight ?? 100,
+          decoration: BoxDecoration(),
+          child: Image.network(
+            widget.imageAsLoading!,
+            width: widget.loadingWidth ?? 100,
+            height: widget.loadingHeight ?? 100,
+            errorBuilder: (BuildContext context, Object exception,
+                StackTrace? stackTrace) {
+              
+              return const Center(
+                child: Text(
+                  "Failed to load image. Please check the image URL.",
+                  style: TextStyle(color: Colors.red, fontSize: 14),
+                  textAlign: TextAlign.center,
+                ),
+              );
+            },
+          ),
+        );
+      } else if (widget.textAsLoading != null) {
+        loadingWidget = Text(
+          widget.textAsLoading!,
+          style: GoogleFonts.getFont(
+            isGoogleFontValid(widget.loadingGoogleFontFamily)
+                ? widget.loadingGoogleFontFamily!
+                : 'Lato',
+            fontSize: widget.loadingFontSize ?? 18,
+            color: widget.loadingColor ?? Colors.blue,
+          ),
+        );
+      } else {
+        loadingWidget = CircularProgressIndicator(
+          color: widget.loadingColor ?? Colors.blue,
+        );
+      }
+
+      if (widget.customLoadingCircularAnimation == true) {
+        loadingWidget = AnimatedRotation(
+          turns: rotationAngle,
+          duration: const Duration(milliseconds: 50),
+          child: loadingWidget,
+        );
+      }
+
+      if (widget.customLoadingPulseAnimation == true) {
+        loadingWidget = AnimatedOpacity(
+          opacity: opacity,
+          duration: const Duration(milliseconds: 500),
+          child: loadingWidget,
+        );
+      }
+
+      return loadingWidget;
+    }
+
+    return Center(
+      child: SizedBox(
+        width: widget.width ?? MediaQuery.of(context).size.width,
+        height: widget.height ??
+            (widget.width ?? MediaQuery.of(context).size.width) /
+                _aspectRatios[
+                    _currentAspectIndex], 
+        child: MaterialVideoControlsTheme(
+            fullscreen: MaterialVideoControlsThemeData(
+              
+              primaryButtonBar: [
+                if (widget.hidePlayAndPauseButton == false)
+                  MaterialPlayOrPauseButton(
+                    iconColor: widget.defaultIconsColor ?? Colors.white,
+                    iconSize: widget.iconPlayPauseSize ?? 54,
+                  )
+              ],
+              bottomButtonBarMargin: EdgeInsets.all(15),
+              backdropColor: Colors.transparent,
+              brightnessGesture: widget.brightnessGesture ?? false,
+              buttonBarButtonColor:
+                  widget.buttonBarButtonColor ?? Color(0xFFFFFFFF),
+              buttonBarButtonSize: widget.buttonBarButtonSize ?? 24.0,
+              buttonBarHeight: widget.buttonBarHeight ?? 56.0,
+              controlsHoverDuration:
+                  Duration(seconds: widget.controlsHoverDurationInSeconds ?? 3),
+              controlsTransitionDuration: Duration(
+                  milliseconds:
+                      widget.controlsTransitionDurationInMilliSeconds ?? 300),
+              displaySeekBar: widget.displaySeekBar ?? true,
+              seekBarAlignment: (widget.seekBarAlignmentX != null ||
+                      widget.seekBarAlignmentY != null)
+                  ? Alignment(
+                      widget.seekBarAlignmentX ??
+                          0, 
+                      widget.seekBarAlignmentY ??
+                          0, 
+                    )
+                  : Alignment.center,
+              seekBarBufferColor:
+                  widget.seekBarBufferColor ?? Color(0x3DFFFFFF),
+              seekBarColor: widget.seekBarColor ?? Color(0x3DFFFFFF),
+              seekBarContainerHeight: widget.seekBarContainerHeight ?? 36.0,
+              seekBarHeight: widget.seekBarHeight ?? 2.4,
+              seekBarMargin: EdgeInsets.fromLTRB(
+                widget.seekBarMarginLeft ?? 0,
+                widget.seekBarMarginTop ?? 0,
+                widget.seekBarMarginRight ?? 0,
+                widget.seekBarMarginBottom ?? 0,
+              ),
+              seekBarPositionColor:
+                  widget.seekBarPositionColor ?? Color(0xFFFF0000),
+              seekBarThumbColor: widget.seekBarThumbColor ?? Color(0xFFFF0000),
+              seekBarThumbSize: widget.seekBarThumbSize ?? 12.8,
+              seekGesture: widget.seekGesture ?? false,
+              seekOnDoubleTap: widget.seekOnDoubleTap ?? false,
+              speedUpOnLongPress: widget.speedUpOnLongPress ?? false,
+              topButtonBarMargin: EdgeInsets.fromLTRB(
+                  widget.topButtonBarMarginLeft ?? 0,
+                  widget.topButtonBarMarginTop ?? 0,
+                  widget.topButtonBarMarginRight ?? 0,
+                  widget.topButtonBarMarginBottom ?? 0),
+              visibleOnMount: widget.visibleOnMount ?? false,
+              volumeGesture: widget.volumeGesture ?? false,
+              bufferingIndicatorBuilder: (context) {
+                return bufferingIndicator();
+              },
+              bottomButtonBar: [
+                if (widget.enableSkipIntroButton == true)
+                  StatefulBuilder(
+                    builder: (context, setState) {
+                      return isIntroButtonVisible && !isIntroSkipped
+                          ? Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  4, 0, 4, 12), 
+                              child: TextButton(
+                                onPressed: () {
+                                  if (endIntroTime != null) {
+                                    player.seek(endIntroTime!);
+                                    setState(() {
+                                      isIntroSkipped = true;
+                                      isIntroButtonVisible = false;
+                                    });
+                                  }
+                                },
+                                autofocus: true,
+                                child: Text(
+                                  widget.skipIntroText ??
+                                      'Skip Intro', 
+                                  style: skipButtonStyle(),
+                                ),
+                              ),
+                            )
+                          : const SizedBox
+                              .shrink(); 
+                    },
+                  ),
+                if (widget.enableVideoTime == true)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(
+                        4, 0, 4, 10), 
+                    child: MaterialPositionIndicator(
+                      style: videoTimeStyle(), 
+                    ),
+                  ),
+                Spacer(),
+                if (widget.hideFullscreenButton == false)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(
+                        4, 0, 4, 10), 
+                    child: MaterialFullscreenButton(
+                      iconColor: widget.defaultIconsColor ?? Colors.white,
+                      iconSize: widget.iconFullscreenSize,
+                      icon: widget.exitFullscreenICON ??
+                          _buildIconWithShadow(
+                            null,
+                            Icons.fullscreen_exit, 
+                            widget.iconFullscreenSize ??
+                                24, 
+                            widget.defaultIconsColor ?? Colors.white,
+                          ),
+                    ),
+                  ),
+              ],
+              topButtonBar: [
+                if (widget.sdLink != null ||
+                    widget.hdLink != null ||
+                    widget.fhdLink != null ||
+                    widget.fourkLink != null)
+                  MaterialCustomButton(
+                    onPressed: () {
+                      buildQualityOptions(context);
+                    },
+                    icon: _buildIconWithShadow(
+                      widget.qualityICON, 
+                      Icons.high_quality,
+                      widget.iconSize ?? 24, 
+                      widget.iconsColor ?? Colors.white,
+                    ),
+                  ),
+                if (subtitleLinksAsList.isNotEmpty ||
+                    widget.enableUploadLocalSubtitle == true)
+                  MaterialCustomButton(
+                    onPressed: () {
+                      _showSubtitlesModal(context); 
+                    },
+                    icon: _buildIconWithShadow(
+                      widget.subtitlesICON, 
+                      Icons
+                          .subtitles, 
+                      widget.iconSize ?? 24, 
+                      widget.iconsColor ?? Colors.white,
+                    ),
+                  ),
+                
+                if (widget.enableAspectRatio == true)
+                  MaterialCustomButton(
+                    onPressed: _toggleAspectRatio,
+                    icon: _buildIconWithShadow(
+                      widget.aspectRatioICON, 
+                      Icons.aspect_ratio,
+                      widget.iconSize ?? 24, 
+                      widget.iconsColor ?? Colors.white,
+                    ),
+                  ),
+                if (widget.enableSpeedButton == true)
+                  MaterialCustomButton(
+                    onPressed: () {
+                      _showPlaybackSpeedModal(
+                          context); 
+                    },
+                    icon: _buildIconWithShadow(
+                      widget.speedICON, 
+                      Icons.speed, 
+                      widget.iconSize ?? 24, 
+                      widget.iconsColor ?? Colors.white,
+                    ),
+                  ),
+              ],
+            ),
+            normal: MaterialVideoControlsThemeData(
+             
+              primaryButtonBar: [
+                if (widget.hidePlayAndPauseButton == false)
+                  MaterialPlayOrPauseButton(
+                    iconColor: widget.defaultIconsColor ?? Colors.white,
+                    iconSize: widget.iconPlayPauseSize ?? 54,
+                  )
+              ],
+              backdropColor: Colors.transparent,
+              brightnessGesture: widget.brightnessGesture ?? false,
+              buttonBarButtonColor:
+                  widget.buttonBarButtonColor ?? Color(0xFFFFFFFF),
+              buttonBarButtonSize: widget.buttonBarButtonSize ?? 24.0,
+              buttonBarHeight: widget.buttonBarHeight ?? 56.0,
+              controlsHoverDuration:
+                  Duration(seconds: widget.controlsHoverDurationInSeconds ?? 3),
+              controlsTransitionDuration: Duration(
+                  milliseconds:
+                      widget.controlsTransitionDurationInMilliSeconds ?? 300),
+              displaySeekBar: widget.displaySeekBar ?? true,
+              seekBarAlignment: (widget.seekBarAlignmentX != null ||
+                      widget.seekBarAlignmentY != null)
+                  ? Alignment(
+                      widget.seekBarAlignmentX ??
+                          0, 
+                      widget.seekBarAlignmentY ??
+                          0, 
+                    )
+                  : Alignment.center,
+              seekBarBufferColor:
+                  widget.seekBarBufferColor ?? Color(0x3DFFFFFF),
+              seekBarColor: widget.seekBarColor ?? Color(0x3DFFFFFF),
+              seekBarContainerHeight: widget.seekBarContainerHeight ?? 36.0,
+              seekBarHeight: widget.seekBarHeight ?? 2.4,
+              seekBarMargin: EdgeInsets.fromLTRB(
+                widget.seekBarMarginLeft ?? 0,
+                widget.seekBarMarginTop ?? 0,
+                widget.seekBarMarginRight ?? 0,
+                widget.seekBarMarginBottom ?? 0,
+              ),
+              seekBarPositionColor:
+                  widget.seekBarPositionColor ?? Color(0xFFFF0000),
+              seekBarThumbColor: widget.seekBarThumbColor ?? Color(0xFFFF0000),
+              seekBarThumbSize: widget.seekBarThumbSize ?? 12.8,
+              seekGesture: widget.seekGesture ?? false,
+              seekOnDoubleTap: widget.seekOnDoubleTap ?? false,
+              speedUpOnLongPress: widget.speedUpOnLongPress ?? false,
+              topButtonBarMargin: EdgeInsets.fromLTRB(
+                  widget.topButtonBarMarginLeft ?? 0,
+                  widget.topButtonBarMarginTop ?? 0,
+                  widget.topButtonBarMarginRight ?? 0,
+                  widget.topButtonBarMarginBottom ?? 0),
+              visibleOnMount: widget.visibleOnMount ?? false,
+              volumeGesture: widget.volumeGesture ?? false,
+              bufferingIndicatorBuilder: (context) {
+                return bufferingIndicator();
+              },
+              bottomButtonBar: [
+                if (widget.enableSkipIntroButton == true)
+                  StatefulBuilder(
+                    builder: (context, setState) {
+                      return isIntroButtonVisible && !isIntroSkipped
+                          ? Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  4, 0, 4, 12), 
+                              child: TextButton(
+                                onPressed: () {
+                                  if (endIntroTime != null) {
+                                    player.seek(endIntroTime!);
+                                    setState(() {
+                                      isIntroSkipped = true;
+                                      isIntroButtonVisible = false;
+                                    });
+                                  }
+                                },
+                                autofocus: true,
+                                child: Text(
+                                  widget.skipIntroText ??
+                                      'Skip Intro', 
+                                  style: skipButtonStyle(),
+                                ),
+                              ),
+                            )
+                          : const SizedBox
+                              .shrink(); 
+                    },
+                  ),
+                if (widget.enableVideoTime == true)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(
+                        4, 0, 4, 10), 
+                    child: MaterialPositionIndicator(
+                      style: videoTimeStyle(), 
+                    ),
+                  ),
+                Spacer(),
+                if (widget.hideFullscreenButton == false)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(
+                        4, 0, 4, 10), 
+                    child: MaterialFullscreenButton(
+                      iconColor: widget.defaultIconsColor ?? Colors.white,
+                      iconSize: widget.iconFullscreenSize,
+                      icon: widget.enterFullscreenICON ??
+                          _buildIconWithShadow(
+                            null, 
+                            Icons.fullscreen, 
+                            widget.iconFullscreenSize ??
+                                24, 
+                            widget.defaultIconsColor ?? Colors.white,
+                          ),
+                    ),
+                  ),
+              ],
+              topButtonBar: [
+                if (widget.sdLink != null ||
+                    widget.hdLink != null ||
+                    widget.fhdLink != null ||
+                    widget.fourkLink != null)
+                  MaterialCustomButton(
+                    onPressed: () {
+                      buildQualityOptions(context);
+                    },
+                    icon: _buildIconWithShadow(
+                      widget.qualityICON, 
+                      Icons.high_quality,
+                      widget.iconSize ?? 24, 
+                      widget.iconsColor ?? Colors.white,
+                    ),
+                  ),
+                if (subtitleLinksAsList.isNotEmpty ||
+                    widget.enableUploadLocalSubtitle == true)
+                  MaterialCustomButton(
+                    onPressed: () {
+                      _showSubtitlesModal(context); 
+                    },
+                    icon: _buildIconWithShadow(
+                      widget.subtitlesICON, 
+                      Icons
+                          .subtitles, 
+                      widget.iconSize ?? 24, 
+                      widget.iconsColor ?? Colors.white,
+                    ),
+                  ),
+                if (widget.enableSpeedButton == true)
+                  MaterialCustomButton(
+                    onPressed: () {
+                      _showPlaybackSpeedModal(
+                          context); 
+                    },
+                    icon: _buildIconWithShadow(
+                      widget.speedICON, 
+                      Icons.speed, 
+                      widget.iconSize ?? 24, 
+                      widget.iconsColor ?? Colors.white,
+                    ),
+                  ),
+              ],
+            ),
+            child: Scaffold(
+                body: GestureDetector(
+              onTap: () {
+                if (isInFullscreen) {
+                  enterFullscreen();
+                }
+              },
+              child: Video(
+                  wakelock: widget.enableWakeLock ?? true,
+                  controls: (widget.hideAllUI ?? false)
+                      ? NoVideoControls
+                      : MaterialVideoControls,
+                  key: (widget.enableAutoFullscreen ?? false) ? key : null,
+                  onEnterFullscreen: () async {
+                    if (!isInFullscreen) {
+                      final videoWidth = player.state.width;
+                      final videoHeight = player.state.height;
+
+                      if (videoWidth != null && videoHeight != null) {
+                        final aspectRatio = videoWidth / videoHeight;
+
+                        if (aspectRatio >= 1) {
+                          
+                          debugPrint(
+                              "Landscape video detected. Entering native fullscreen.");
+                          await defaultEnterNativeFullscreen(); 
+                        } else {
+                          
+                          debugPrint(
+                              "Vertical video detected. Skipping native fullscreen.");
+                        }
+                      } else {
+                        debugPrint(
+                            "Video dimensions not available. Defaulting to landscape behavior.");
+                        await defaultEnterNativeFullscreen(); 
+                      }
+
+                      enterFullscreen(); 
+                    }
+                  },
+                  onExitFullscreen: () async {
+                    await defaultExitNativeFullscreen();
+                    setState(() {
+                      isInFullscreen = false; 
+                    });
+                  },
+                  aspectRatio: _aspectRatios[_currentAspectIndex],
+                  controller: controller,
+                  subtitleViewConfiguration: SubtitleViewConfiguration(
+                    padding: EdgeInsets.only(
+                        bottom: 40.0 +
+                            subtitleOffset
+                                .toDouble()), 
+                    visible: _selectedSubtitleName !=
+                        null, 
+                    textScaler: TextScaler.linear(1),
+                    style: GoogleFonts.getFont(
+                      isGoogleFontValid(widget.subtitleGoogleFontFamily)
+                          ? widget.subtitleGoogleFontFamily!
+                          : 'Roboto',
+                      textStyle: TextStyle(
+                        fontSize: widget.subtitleFontSize ?? 18.0,
+                        color: widget.subtitleColor ?? Colors.white,
+                        backgroundColor: widget.enableSubtitleBg == true
+                            ? widget.subtitleBackgroundColor ?? Colors.black54
+                            : Colors.transparent,
+                        shadows: widget.enableSubtitleBorder == true
+                            ? [
+                                Shadow(
+                                  offset: Offset(
+                                      widget.subtitleBorderOffsetX ?? 0,
+                                      widget.subtitleBorderOffsety ?? 0),
+                                  color: widget.subtitleBorderColor ??
+                                      Colors.black,
+                                  blurRadius: widget.subtitleBorderWidth ?? 1.0,
+                                ),
+                              ]
+                            : null,
+                      ),
+                    ),
+                  )),
+            ))),
+      ),
+    );
+  }
+}
