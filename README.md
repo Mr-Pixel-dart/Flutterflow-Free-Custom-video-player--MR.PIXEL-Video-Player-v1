@@ -1,3 +1,4 @@
+![Image](https://github.com/user-attachments/assets/9163985a-58d5-4a38-a91e-d9809d504ac6)
 MR.PIXEL Custom Video Player V1
 🎥 Free Custom Video Player for FlutterFlow — The Most Feature-Rich & Customizable Yet!
 I'm excited to share a FREE custom video player widget built for FlutterFlow, with over 100 parameters for total control and customization!
