@@ -136,10 +136,11 @@ colorUploadLocalSubtitleBoxOption
 🛠 How to Install
 👉 Step 1: Create a Custom Widget
 Widget Name: MrPixelVideoPlayer
+![Image](https://github.com/user-attachments/assets/91177068-9376-494e-bc1a-943c269e1de5)
 
 
 👉 Step 2: Add These Dependencies to Your pubspec.yaml
-
+![Image](https://github.com/user-attachments/assets/7e99599e-944e-42e5-a6b8-032326361c57)
 file_picker: ^8.1.7
 
 media_kit: ^1.1.11
